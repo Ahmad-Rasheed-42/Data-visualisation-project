@@ -4,16 +4,16 @@ import { ScatterChart, Scatter, XAxis, YAxis, ZAxis, Tooltip, ResponsiveContaine
 import { Moon, Stars, Compass, Globe } from 'lucide-react';
 
 const data = [
-  { country: "United States", revenue: 2890, x: 20, y: 50 },
-  { country: "United Kingdom", revenue: 1100, x: 45, y: 70 },
-  { country: "Japan", revenue: 850, x: 80, y: 60 },
-  { country: "Germany", revenue: 640, x: 50, y: 65 },
-  { country: "France", revenue: 580, x: 47, y: 55 },
-  { country: "Australia", revenue: 320, x: 85, y: 20 },
-  { country: "Brazil", revenue: 210, x: 30, y: 30 },
-  { country: "China", revenue: 350, x: 75, y: 50 },
-  { country: "Italy", revenue: 270, x: 53, y: 50 },
-  { country: "Spain", revenue: 230, x: 45, y: 45 },
+  { country: "United States", revenue: 2890, x: 22, y: 65 },
+  { country: "United Kingdom", revenue: 1100, x: 47, y: 75 },
+  { country: "Japan", revenue: 850, x: 86, y: 65 },
+  { country: "Germany", revenue: 640, x: 50, y: 72 },
+  { country: "France", revenue: 580, x: 48, y: 68 },
+  { country: "Australia", revenue: 320, x: 85, y: 25 },
+  { country: "Brazil", revenue: 210, x: 32, y: 35 },
+  { country: "China", revenue: 350, x: 75, y: 60 },
+  { country: "Italy", revenue: 270, x: 52, y: 65 },
+  { country: "Spain", revenue: 230, x: 46, y: 65 },
 ];
 
 const CustomTooltip = ({ active, payload }) => {
@@ -95,13 +95,13 @@ const GlobalPhenomenonSection = () => {
               <Globe size={18} /> The Analysis
             </h3>
             <p className="text-sm text-gray-300 font-sans leading-relaxed mb-4">
-              This abstract map plots the international box office revenue distribution across key worldwide territories, sizing the markers by total earnings.
+              This interactive world map highlights the international box office revenue distribution across key territories.
             </p>
             <h3 className="text-magical-gold font-serif text-xl mb-2 flex items-center gap-2">
               <Stars size={18} /> The Conclusion
             </h3>
             <p className="text-sm text-gray-300 font-sans leading-relaxed">
-              The magic was truly universal. While the US and UK served as the primary strongholds, the staggering revenue from Japan, Germany, and France demonstrates how a distinctly British story became a global cinematic empire, setting the absolute gold standard for worldwide franchise syndication and cultural saturation.
+              The magic was truly universal. While the US and UK served as the primary strongholds, the staggering revenue from Japan, Germany, and France demonstrates how a distinctly British story became a global cinematic empire.
             </p>
           </div>
         </motion.div>
@@ -113,12 +113,17 @@ const GlobalPhenomenonSection = () => {
           transition={{ duration: 1, delay: 0.2 }}
           className="col-span-2 w-full h-[65vh] bg-magical-midnight/70 rounded-xl p-6 relative overflow-hidden border border-magical-gold/20 backdrop-blur-md z-20 shadow-[0_0_50px_rgba(11,19,43,0.8)]"
         >
-          {/* Abstract World Map Background */}
-          <div className="absolute inset-0 opacity-20 pointer-events-none" style={{
-            backgroundImage: 'url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 1000 500\'><path d=\'M200,100 Q250,50 300,100 T400,150 T500,100 T600,200 T800,100 T900,150 M100,300 Q150,250 200,350 T300,400 T400,300 T600,400 T800,300\' fill=\'none\' stroke=\'%23d4af37\' stroke-width=\'2\' stroke-dasharray=\'5,5\'/></svg>")',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center'
-          }}></div>
+          {/* Actual World Map Background */}
+          <div 
+            className="absolute inset-0 opacity-30 pointer-events-none" 
+            style={{
+              backgroundImage: 'url("/assets/world.svg")',
+              backgroundSize: '90%',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat',
+              filter: 'sepia(1) hue-rotate(10deg) saturate(2) brightness(0.8)' // Themed color tweak
+            }}
+          ></div>
 
           <ResponsiveContainer width="100%" height="100%">
             <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
@@ -126,7 +131,7 @@ const GlobalPhenomenonSection = () => {
               <YAxis type="number" dataKey="y" hide domain={[0, 100]} />
               <ZAxis type="number" dataKey="revenue" range={[600, 15000]} />
               
-              <Tooltip content={<CustomTooltip />} cursor={{strokeDasharray: '3 3', stroke: 'rgba(212,175,55,0.2)'}} />
+              <Tooltip content={<CustomTooltip />} cursor={false} />
               
               <Scatter 
                 name="Countries" 

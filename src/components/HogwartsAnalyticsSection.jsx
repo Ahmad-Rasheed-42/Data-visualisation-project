@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, ResponsiveContainer } from 'recharts';
 import { Shield, Sparkles, Trophy, Award } from 'lucide-react';
 
@@ -34,9 +34,52 @@ const CustomTooltip = ({ active, payload }) => {
 };
 
 const HogwartsAnalyticsSection = () => {
+  const [isLumosActive, setIsLumosActive] = useState(false);
+
+  const handleBarClick = (data) => {
+    // Check if clicked bar or text is "Lumos" (accounting for lowercases just in case)
+    if (data && data.name && data.name.toLowerCase() === 'lumos') {
+      setIsLumosActive(true);
+    }
+  };
+
   return (
     <div className="w-full h-full flex flex-col items-center justify-center relative z-10 px-12 py-10 overflow-hidden">
       
+      {/* Lumos Easter Egg Overlay */}
+      <AnimatePresence>
+        {isLumosActive && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0, transition: { duration: 1 } }}
+            className="fixed inset-0 bg-black z-[9999] flex items-center justify-center cursor-pointer overflow-hidden"
+            onClick={() => setIsLumosActive(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.8, textShadow: '0 0 0px #fff' }}
+              animate={{ 
+                scale: 1, 
+                textShadow: ['0 0 20px #fff, 0 0 40px #fff', '0 0 50px #fff, 0 0 100px #fff', '0 0 20px #fff, 0 0 40px #fff'],
+                filter: ['brightness(1)', 'brightness(1.5)', 'brightness(1)']
+              }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <h1 className="text-white text-7xl md:text-9xl font-serif tracking-widest pointer-events-none">
+                LUMOS
+              </h1>
+            </motion.div>
+            
+            {/* Blinding Light effect in background */}
+            <motion.div 
+              className="absolute inset-0 bg-white pointer-events-none mix-blend-overlay"
+              animate={{ opacity: [0, 0.3, 0] }}
+              transition={{ duration: 3, repeat: Infinity }}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* 3D Generated Artifact: Floating Wand */}
       <motion.img 
         src="/assets/wand.png" 
@@ -130,7 +173,7 @@ const HogwartsAnalyticsSection = () => {
           <h3 className="text-magical-gold font-serif text-2xl mb-2 flex items-center gap-2">
             <Sparkles size={24} /> Top Spells
           </h3>
-          <p className="text-sm text-gray-400 mb-4">The most frequently spoken incantations in the script.</p>
+          <p className="text-sm text-gray-400 mb-4">Click the <strong className="text-white cursor-pointer hover:text-magical-gold transition-colors" onClick={() => setIsLumosActive(true)}>Lumos</strong> bar to cast a spell!</p>
           <div className="flex-1 w-full min-h-[250px]">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={spellData} layout="vertical" margin={{ top: 0, right: 20, bottom: 0, left: 30 }}>
@@ -141,10 +184,18 @@ const HogwartsAnalyticsSection = () => {
                   type="category" 
                   axisLine={false} 
                   tickLine={false} 
-                  tick={{fill: '#f0e6d2', fontFamily: 'Inter', fontSize: 12}} 
+                  tick={{fill: '#f0e6d2', fontFamily: 'Inter', fontSize: 12, cursor: 'pointer'}} 
+                  onClick={handleBarClick}
                 />
                 <RechartsTooltip content={<CustomTooltip />} cursor={{fill: 'rgba(212, 175, 55, 0.1)'}} />
-                <Bar dataKey="count" fill="#d4af37" radius={[0, 4, 4, 0]} barSize={20} className="hover:filter hover:brightness-150 transition-all cursor-pointer" />
+                <Bar 
+                  dataKey="count" 
+                  fill="#d4af37" 
+                  radius={[0, 4, 4, 0]} 
+                  barSize={20} 
+                  className="hover:filter hover:brightness-150 hover:drop-shadow-[0_0_10px_#d4af37] transition-all cursor-pointer" 
+                  onClick={handleBarClick}
+                />
               </BarChart>
             </ResponsiveContainer>
           </div>
