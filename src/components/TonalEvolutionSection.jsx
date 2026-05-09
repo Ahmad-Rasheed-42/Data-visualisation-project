@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ZAxis } from 'recharts';
-import { Skull, Ghost } from 'lucide-react';
+import { Skull, Ghost, Sparkles } from 'lucide-react';
 
 const data = [
   { title: "Sorcerer's Stone", darkness: 3.2, rating: 7.6 },
