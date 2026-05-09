@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
 
 @layer base {
   body {
@@ -15,70 +15,28 @@
 }
 
 @layer utilities {
-  .snap-container {
-    scroll-snap-type: x mandatory;
-    overflow-x: scroll;
-    overflow-y: hidden;
-    display: flex;
-    height: 100vh;
-    width: 100vw;
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
-  }
-  
-  .snap-container::-webkit-scrollbar {
-    display: none; /* Chrome, Safari and Opera */
-  }
-
-  .snap-section {
-    scroll-snap-align: start;
-    flex: 0 0 100vw;
-    height: 100vh;
-    overflow-y: auto;
-    overflow-x: hidden;
-    position: relative;
-  }
-
   .text-glow {
     text-shadow: 0 0 10px rgba(212, 175, 55, 0.5), 0 0 20px rgba(212, 175, 55, 0.3);
+    transition: text-shadow 0.3s ease;
   }
 
   .text-glow-hover:hover {
     text-shadow: 0 0 15px rgba(212, 175, 55, 0.8), 0 0 30px rgba(212, 175, 55, 0.5);
   }
   
+  .parchment-bg {
+    background-color: rgba(11, 19, 43, 0.8);
+    background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><filter id="noiseFilter"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23noiseFilter)" opacity="0.05"/></svg>');
+  }
+  
   .starry-bg {
     background-image: 
-      radial-gradient(circle at 15% 50%, rgba(27, 67, 50, 0.2) 0%, transparent 50%),
-      radial-gradient(circle at 85% 30%, rgba(13, 27, 42, 0.5) 0%, transparent 50%);
+      radial-gradient(circle at 15% 50%, rgba(26, 71, 42, 0.15) 0%, transparent 50%),
+      radial-gradient(circle at 85% 30%, rgba(11, 19, 43, 0.5) 0%, transparent 50%);
   }
-}
 
-/* React Flow custom styles */
-.react-flow__node {
-  @apply rounded-xl border border-magical-gold bg-magical-midnight bg-opacity-80 backdrop-blur-md text-white font-serif shadow-lg;
-  box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
-  transition: all 0.3s ease;
-}
-
-.react-flow__node:hover {
-  box-shadow: 0 0 25px rgba(212, 175, 55, 0.5);
-  transform: scale(1.05);
-}
-
-.react-flow__edge-path {
-  stroke: rgba(212, 175, 55, 0.5);
-  stroke-width: 2;
-}
-
-.react-flow__edge.friend .react-flow__edge-path {
-  stroke: #4ade80; /* emerald green */
-}
-
-.react-flow__edge.enemy .react-flow__edge-path {
-  stroke: #ef4444; /* red */
-}
-
-.react-flow__edge.spy .react-flow__edge-path {
-  stroke: #a855f7; /* purple */
+  /* Custom Recharts tooltips */
+  .custom-tooltip {
+    @apply bg-magical-midnight border border-magical-gold p-4 rounded-lg shadow-glow;
+  }
 }

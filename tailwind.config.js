@@ -7,15 +7,20 @@ export default {
     extend: {
       colors: {
         magical: {
-          dark: '#0a0a0a',
-          midnight: '#0d1b2a',
-          emerald: '#1b4332',
-          gold: '#D4AF37',
+          dark: '#050a15', // Deep night-sky blue
+          midnight: '#0b132b',
+          slytherin: '#1a472a', // Slytherin green
+          gold: '#d4af37', // Gryffindor gold
+          parchment: '#f0e6d2',
         }
       },
       fontFamily: {
         serif: ['"Playfair Display"', 'serif'],
         sans: ['Inter', 'sans-serif'],
+      },
+      boxShadow: {
+        glow: '0 0 15px rgba(212, 175, 55, 0.5)',
+        glowHover: '0 0 25px rgba(212, 175, 55, 0.8)',
       }
     },
   },
