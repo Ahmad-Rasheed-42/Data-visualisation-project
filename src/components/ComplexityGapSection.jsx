@@ -35,7 +35,7 @@ const ComplexityGapSection = () => {
         src="/assets/spellbook.png" 
         alt="Ancient Spellbook"
         className="absolute top-10 right-10 w-80 h-80 object-contain opacity-60 pointer-events-none"
-        style={{ mixBlendMode: 'lighten' }}
+        style={{ mixBlendMode: 'lighten', maskImage: 'radial-gradient(circle, black 40%, transparent 70%)', WebkitMaskImage: 'radial-gradient(circle, black 40%, transparent 70%)' }}
         animate={{
           y: [0, 20, 0],
           rotate: [0, 3, -3, 0],

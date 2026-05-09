@@ -37,7 +37,7 @@ const TonalEvolutionSection = () => {
         src="/assets/potion.png" 
         alt="Bubbling Potion"
         className="absolute bottom-10 left-10 w-72 h-72 object-contain opacity-70 pointer-events-none"
-        style={{ mixBlendMode: 'screen' }}
+        style={{ mixBlendMode: 'screen', maskImage: 'radial-gradient(circle, black 40%, transparent 70%)', WebkitMaskImage: 'radial-gradient(circle, black 40%, transparent 70%)' }}
         animate={{
           y: [0, -15, 0],
           rotate: [-2, 2, -2],

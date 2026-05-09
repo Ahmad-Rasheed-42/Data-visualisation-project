@@ -42,7 +42,7 @@ const HogwartsAnalyticsSection = () => {
         src="/assets/wand.png" 
         alt="Glowing Magic Wand"
         className="absolute top-10 right-20 w-80 h-80 object-contain opacity-80 pointer-events-none"
-        style={{ mixBlendMode: 'screen' }}
+        style={{ mixBlendMode: 'screen', maskImage: 'radial-gradient(circle, black 40%, transparent 70%)', WebkitMaskImage: 'radial-gradient(circle, black 40%, transparent 70%)' }}
         animate={{
           y: [0, 20, 0],
           rotate: [45, 50, 45],
