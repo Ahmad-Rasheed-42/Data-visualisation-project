@@ -34,7 +34,7 @@ const TonalEvolutionSection = () => {
       
       {/* 3D Generated Artifact: Potion Bottle */}
       <motion.img 
-        src="/assets/potion.png" 
+        src={`${import.meta.env.BASE_URL}assets/potion.png`}
         alt="Bubbling Potion"
         className="absolute bottom-10 left-10 w-72 h-72 object-contain opacity-70 pointer-events-none"
         style={{ mixBlendMode: 'screen', maskImage: 'radial-gradient(circle, black 40%, transparent 70%)', WebkitMaskImage: 'radial-gradient(circle, black 40%, transparent 70%)' }}

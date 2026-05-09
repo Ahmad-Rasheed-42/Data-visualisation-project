@@ -82,7 +82,7 @@ const HogwartsAnalyticsSection = () => {
 
       {/* 3D Generated Artifact: Floating Wand */}
       <motion.img 
-        src="/assets/wand.png" 
+        src={`${import.meta.env.BASE_URL}assets/wand.png`}
         alt="Glowing Magic Wand"
         className="absolute top-10 right-20 w-80 h-80 object-contain opacity-80 pointer-events-none"
         style={{ mixBlendMode: 'screen', maskImage: 'radial-gradient(circle, black 40%, transparent 70%)', WebkitMaskImage: 'radial-gradient(circle, black 40%, transparent 70%)' }}

@@ -32,7 +32,7 @@ const ComplexityGapSection = () => {
       
       {/* 3D Generated Artifact: Spellbook */}
       <motion.img 
-        src="/assets/spellbook.png" 
+        src={`${import.meta.env.BASE_URL}assets/spellbook.png`}
         alt="Ancient Spellbook"
         className="absolute top-10 right-10 w-80 h-80 object-contain opacity-60 pointer-events-none"
         style={{ mixBlendMode: 'lighten', maskImage: 'radial-gradient(circle, black 40%, transparent 70%)', WebkitMaskImage: 'radial-gradient(circle, black 40%, transparent 70%)' }}

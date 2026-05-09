@@ -9,7 +9,7 @@ import * as THREE from 'three';
 
 // 3D Title Component
 const TitleModel = () => {
-  const { scene } = useGLTF('/models/hp_title.glb');
+  const { scene } = useGLTF(`${import.meta.env.BASE_URL}models/hp_title.glb`);
   
   // Optional: Enhance the material of the title to make it pop
   React.useEffect(() => {
@@ -30,7 +30,7 @@ const TitleModel = () => {
 
 // 3D Golden Snitch Component
 const SnitchModel = () => {
-  const obj = useLoader(OBJLoader, '/models/snitch.obj');
+  const obj = useLoader(OBJLoader, `${import.meta.env.BASE_URL}models/snitch.obj`);
   
   // Apply a beautiful, highly reflective golden material since it lacks a .mtl file
   React.useEffect(() => {

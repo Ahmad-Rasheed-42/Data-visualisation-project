@@ -37,7 +37,7 @@ const GlobalPhenomenonSection = () => {
       
       {/* 3D Generated Artifact: Astrolabe / Crystal Ball */}
       <motion.img 
-        src="/assets/astrolabe.png" 
+        src={`${import.meta.env.BASE_URL}assets/astrolabe.png`}
         alt="Magical Astrolabe"
         className="absolute bottom-20 right-20 w-80 h-80 object-contain opacity-70 pointer-events-none"
         style={{ mixBlendMode: 'screen', maskImage: 'radial-gradient(circle, black 40%, transparent 70%)', WebkitMaskImage: 'radial-gradient(circle, black 40%, transparent 70%)' }}
@@ -117,7 +117,7 @@ const GlobalPhenomenonSection = () => {
           <div 
             className="absolute inset-0 opacity-30 pointer-events-none" 
             style={{
-              backgroundImage: 'url("/assets/world.svg")',
+              backgroundImage: `url("${import.meta.env.BASE_URL}assets/world.svg")`,
               backgroundSize: '90%',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat',
