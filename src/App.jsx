@@ -4,6 +4,7 @@ import IntroSection from './components/IntroSection';
 import TonalEvolutionSection from './components/TonalEvolutionSection';
 import ComplexityGapSection from './components/ComplexityGapSection';
 import GlobalPhenomenonSection from './components/GlobalPhenomenonSection';
+import HogwartsAnalyticsSection from './components/HogwartsAnalyticsSection';
 
 function App() {
   const targetRef = useRef(null);
@@ -13,17 +14,20 @@ function App() {
     target: targetRef,
   });
 
-  // Map vertical scroll (0 to 1) to horizontal translation (0% to -75%)
-  // Since we have 4 sections, we want to slide exactly 3 sections over (75% of the total width)
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-75%"]);
+  // Map vertical scroll (0 to 1) to horizontal translation (0% to -80%)
+  // Since we have 5 sections, we want to slide exactly 4 sections over (80% of the total 500vw width)
+  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-80%"]);
 
   return (
     // The tall container that enables vertical scrolling
-    // Height is 400vh (4 sections)
-    <div ref={targetRef} className="h-[400vh] bg-magical-dark starry-bg w-full">
+    // Height is 500vh (5 sections)
+    <div ref={targetRef} className="h-[500vh] bg-magical-dark starry-bg w-full relative">
       
+      {/* Ambient background glow added for extra magical depth */}
+      <div className="fixed inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-magical-slytherin/10 via-magical-midnight/5 to-transparent pointer-events-none z-0"></div>
+
       {/* Sticky container that stays in the viewport */}
-      <div className="sticky top-0 h-screen w-full overflow-hidden flex flex-col">
+      <div className="sticky top-0 h-screen w-full overflow-hidden flex flex-col z-10">
         
         {/* Magical Progress Bar (Wand Spell) */}
         <div className="fixed top-0 left-0 w-full h-2 z-50 bg-magical-midnight/50">
@@ -36,8 +40,8 @@ function App() {
           </motion.div>
         </div>
 
-        {/* The horizontal track holding the 4 sections */}
-        <motion.div style={{ x }} className="flex h-full w-[400vw]">
+        {/* The horizontal track holding the 5 sections */}
+        <motion.div style={{ x }} className="flex h-full w-[500vw]">
           
           <section className="h-full w-[100vw] flex-shrink-0 relative overflow-hidden">
             <IntroSection />
@@ -53,6 +57,10 @@ function App() {
 
           <section className="h-full w-[100vw] flex-shrink-0 relative overflow-hidden">
             <GlobalPhenomenonSection />
+          </section>
+
+          <section className="h-full w-[100vw] flex-shrink-0 relative overflow-hidden">
+            <HogwartsAnalyticsSection />
           </section>
 
         </motion.div>
