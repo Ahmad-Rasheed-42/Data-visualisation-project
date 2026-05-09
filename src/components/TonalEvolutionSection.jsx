@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ZAxis } from 'recharts';
+import { Skull, Ghost } from 'lucide-react';
 
 const data = [
   { title: "Sorcerer's Stone", darkness: 3.2, rating: 7.6 },
@@ -29,16 +30,66 @@ const CustomTooltip = ({ active, payload }) => {
 
 const TonalEvolutionSection = () => {
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center relative z-10 px-12 py-20">
+    <div className="w-full h-full flex flex-col items-center justify-center relative z-10 px-12 py-20 overflow-hidden">
+      
+      {/* 3D Generated Artifact: Potion Bottle */}
+      <motion.img 
+        src="/assets/potion.png" 
+        alt="Bubbling Potion"
+        className="absolute bottom-10 left-10 w-72 h-72 object-contain opacity-70 pointer-events-none"
+        style={{ mixBlendMode: 'screen' }}
+        animate={{
+          y: [0, -15, 0],
+          rotate: [-2, 2, -2],
+          filter: ['brightness(1)', 'brightness(1.2)', 'brightness(1)']
+        }}
+        transition={{
+          duration: 5,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+      />
+
+      {/* Giant Rotating Alchemy Circle Background */}
+      <motion.div 
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] opacity-10 pointer-events-none z-0"
+        animate={{ rotate: 360 }}
+        transition={{ duration: 120, repeat: Infinity, ease: "linear" }}
+      >
+        <svg viewBox="0 0 100 100" className="w-full h-full stroke-magical-slytherin fill-none" strokeWidth="0.5">
+          <circle cx="50" cy="50" r="48" />
+          <circle cx="50" cy="50" r="40" strokeDasharray="2 2" />
+          <polygon points="50,2 93,75 7,75" />
+          <polygon points="50,98 7,25 93,25" />
+          <circle cx="50" cy="50" r="20" />
+        </svg>
+      </motion.div>
+
+      {/* Floating Icons */}
+      <motion.div 
+        className="absolute top-20 right-32 text-magical-slytherin/30"
+        animate={{ y: [0, -20, 0], x: [0, 10, 0] }}
+        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+      >
+        <Skull size={56} />
+      </motion.div>
+      <motion.div 
+        className="absolute bottom-32 right-1/4 text-gray-500/20"
+        animate={{ y: [0, -30, 0], rotate: [0, 15, 0] }}
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+      >
+        <Ghost size={40} />
+      </motion.div>
+
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        className="w-full max-w-5xl mb-8"
+        className="w-full max-w-5xl mb-8 relative z-20"
       >
         <h2 className="text-4xl md:text-5xl font-serif text-magical-gold mb-4 text-glow">The Tonal Evolution</h2>
         <p className="text-2xl font-sans text-gray-400">
-          Did a darker <span className="text-white hover:text-glow-hover cursor-default transition-all">tone</span> equal better ratings?
+          Did a darker <span className="text-white hover:text-glow-hover cursor-default transition-all shadow-[0_0_15px_rgba(26,71,42,0.8)] rounded-md px-1 bg-magical-slytherin/20">tone</span> equal better ratings?
         </p>
       </motion.div>
 
@@ -46,7 +97,7 @@ const TonalEvolutionSection = () => {
         initial={{ opacity: 0, scale: 0.95 }}
         whileInView={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1, delay: 0.2 }}
-        className="w-full max-w-5xl h-[60vh] bg-magical-midnight/60 rounded-xl p-6 border border-magical-slytherin/50 backdrop-blur-sm"
+        className="w-full max-w-5xl h-[60vh] bg-magical-midnight/70 rounded-xl p-6 border border-magical-slytherin/50 backdrop-blur-md relative z-20 shadow-[0_0_30px_rgba(26,71,42,0.2)]"
       >
         <ResponsiveContainer width="100%" height="100%">
           <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
@@ -69,7 +120,7 @@ const TonalEvolutionSection = () => {
               tick={{fill: '#f0e6d2', fontFamily: 'Inter'}}
               label={{ value: 'IMDb Rating', angle: -90, position: 'insideLeft', fill: '#d4af37', fontFamily: 'Playfair Display' }}
             />
-            <ZAxis type="number" range={[100, 400]} />
+            <ZAxis type="number" range={[150, 500]} />
             <Tooltip content={<CustomTooltip />} cursor={{strokeDasharray: '3 3', stroke: '#1a472a'}} />
             <Scatter 
               name="Movies" 
@@ -78,7 +129,7 @@ const TonalEvolutionSection = () => {
               stroke="#d4af37"
               strokeWidth={2}
               shape="circle" 
-              className="hover:filter hover:brightness-150 transition-all duration-300"
+              className="hover:filter hover:brightness-150 hover:drop-shadow-[0_0_15px_#1a472a] transition-all duration-300 cursor-pointer"
             />
           </ScatterChart>
         </ResponsiveContainer>
