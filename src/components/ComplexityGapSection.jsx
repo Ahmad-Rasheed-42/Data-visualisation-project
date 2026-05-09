@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ComposedChart, Line, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from 'recharts';
-import { BookOpen, ScrollText } from 'lucide-react';
+import { BookOpen, ScrollText, Sparkles } from 'lucide-react';
 
 const data = [
   { title: "Sorcerer's Stone", pages: 309, rating: 7.6 },
@@ -28,7 +28,7 @@ const CustomTooltip = ({ active, payload, label }) => {
 
 const ComplexityGapSection = () => {
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center relative z-10 px-12 py-20 overflow-hidden">
+    <div className="w-full h-full flex flex-col items-center justify-center relative z-10 px-12 py-10 overflow-hidden">
       
       {/* 3D Generated Artifact: Spellbook */}
       <motion.img 
@@ -63,68 +63,88 @@ const ComplexityGapSection = () => {
         <ScrollText size={48} />
       </motion.div>
 
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="w-full max-w-5xl mb-8 relative z-20"
-      >
-        <h2 className="text-4xl md:text-5xl font-serif text-magical-gold mb-4 text-glow">The Complexity Gap</h2>
-        <p className="text-2xl font-sans text-gray-400">
-          Is there <span className="text-white hover:text-glow-hover cursor-default transition-all shadow-[0_0_15px_rgba(212,175,55,0.4)] px-1 rounded-md bg-magical-gold/10">book-to-screen</span> fatigue as the stories grew?
-        </p>
-      </motion.div>
+      <div className="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-3 gap-8 relative z-20">
+        
+        {/* Text Content Area */}
+        <motion.div
+          initial={{ opacity: 0, x: -30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+          className="col-span-1 flex flex-col justify-center"
+        >
+          <h2 className="text-4xl md:text-5xl font-serif text-magical-gold mb-4 text-glow">The Complexity Gap</h2>
+          <p className="text-xl font-sans text-gray-400 mb-6">
+            Is there <span className="text-white hover:text-glow-hover cursor-default transition-all shadow-[0_0_15px_rgba(212,175,55,0.4)] px-1 rounded-md bg-magical-gold/10">book-to-screen</span> fatigue?
+          </p>
+          
+          <div className="bg-magical-midnight/80 border border-magical-gold/30 rounded-xl p-5 shadow-[0_0_20px_rgba(212,175,55,0.15)] backdrop-blur-md">
+            <h3 className="text-magical-gold font-serif text-xl mb-2 flex items-center gap-2">
+              <ScrollText size={18} /> The Analysis
+            </h3>
+            <p className="text-sm text-gray-300 font-sans leading-relaxed mb-4">
+              This composed chart juxtaposes the source material's density (page count via bars) against the cinematic adaptation's reception (IMDb rating via the golden line).
+            </p>
+            <h3 className="text-magical-gold font-serif text-xl mb-2 flex items-center gap-2">
+              <Sparkles size={18} /> The Conclusion
+            </h3>
+            <p className="text-sm text-gray-300 font-sans leading-relaxed">
+              While the book length exploded dramatically—peaking at <span className="text-white italic">Order of the Phoenix</span>—the film ratings remained remarkably stable. The data shows no "adaptation fatigue." The filmmakers successfully distilled massive, labyrinthine books into beloved cinematic blueprints without losing audience engagement or critical acclaim.
+            </p>
+          </div>
+        </motion.div>
 
-      <motion.div 
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 0.2 }}
-        className="w-full max-w-5xl h-[60vh] bg-magical-midnight/70 rounded-xl p-6 border border-magical-gold/30 backdrop-blur-md relative z-20 shadow-[0_0_40px_rgba(212,175,55,0.15)]"
-      >
-        <ResponsiveContainer width="100%" height="100%">
-          <ComposedChart data={data} margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
-            <CartesianGrid strokeDasharray="3 3" stroke="#ffffff" opacity={0.1} />
-            <XAxis 
-              dataKey="title" 
-              stroke="#d4af37" 
-              tick={{fill: '#f0e6d2', fontFamily: 'Inter', fontSize: 12}}
-              interval={0}
-              angle={-25}
-              textAnchor="end"
-              height={60}
-            />
-            <YAxis 
-              yAxisId="left" 
-              stroke="#4ade80" 
-              tick={{fill: '#4ade80', fontFamily: 'Inter'}}
-              label={{ value: 'Book Page Count', angle: -90, position: 'insideLeft', fill: '#4ade80', fontFamily: 'Playfair Display' }}
-            />
-            <YAxis 
-              yAxisId="right" 
-              orientation="right" 
-              domain={[7, 8.5]} 
-              stroke="#d4af37" 
-              tick={{fill: '#d4af37', fontFamily: 'Inter'}}
-              label={{ value: 'IMDb Rating', angle: 90, position: 'insideRight', fill: '#d4af37', fontFamily: 'Playfair Display' }}
-            />
-            <Tooltip content={<CustomTooltip />} cursor={{fill: 'rgba(212, 175, 55, 0.1)'}} />
-            <Legend wrapperStyle={{ paddingTop: '20px', fontFamily: 'Inter', color: '#f0e6d2' }} />
-            
-            <Bar yAxisId="left" dataKey="pages" name="Page Count" fill="#1a472a" radius={[4, 4, 0, 0]} className="hover:filter hover:brightness-150 transition-all cursor-pointer" />
-            <Line 
-              yAxisId="right" 
-              type="monotone" 
-              dataKey="rating" 
-              name="Movie Rating" 
-              stroke="#d4af37" 
-              strokeWidth={4}
-              dot={{r: 6, fill: '#0b132b', stroke: '#d4af37', strokeWidth: 2}}
-              activeDot={{r: 10, fill: '#d4af37', shadow: '0 0 15px #d4af37', stroke: '#fff'}}
-              animationDuration={2500}
-            />
-          </ComposedChart>
-        </ResponsiveContainer>
-      </motion.div>
+        {/* Chart Area */}
+        <motion.div 
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 0.2 }}
+          className="col-span-2 w-full h-[65vh] bg-magical-midnight/70 rounded-xl p-6 border border-magical-gold/30 backdrop-blur-md shadow-[0_0_40px_rgba(212,175,55,0.15)]"
+        >
+          <ResponsiveContainer width="100%" height="100%">
+            <ComposedChart data={data} margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
+              <CartesianGrid strokeDasharray="3 3" stroke="#ffffff" opacity={0.1} />
+              <XAxis 
+                dataKey="title" 
+                stroke="#d4af37" 
+                tick={{fill: '#f0e6d2', fontFamily: 'Inter', fontSize: 12}}
+                interval={0}
+                angle={-25}
+                textAnchor="end"
+                height={60}
+              />
+              <YAxis 
+                yAxisId="left" 
+                stroke="#4ade80" 
+                tick={{fill: '#4ade80', fontFamily: 'Inter'}}
+                label={{ value: 'Book Page Count', angle: -90, position: 'insideLeft', fill: '#4ade80', fontFamily: 'Playfair Display' }}
+              />
+              <YAxis 
+                yAxisId="right" 
+                orientation="right" 
+                domain={[7, 8.5]} 
+                stroke="#d4af37" 
+                tick={{fill: '#d4af37', fontFamily: 'Inter'}}
+                label={{ value: 'IMDb Rating', angle: 90, position: 'insideRight', fill: '#d4af37', fontFamily: 'Playfair Display' }}
+              />
+              <Tooltip content={<CustomTooltip />} cursor={{fill: 'rgba(212, 175, 55, 0.1)'}} />
+              <Legend wrapperStyle={{ paddingTop: '20px', fontFamily: 'Inter', color: '#f0e6d2' }} />
+              
+              <Bar yAxisId="left" dataKey="pages" name="Page Count" fill="#1a472a" radius={[4, 4, 0, 0]} className="hover:filter hover:brightness-150 transition-all cursor-pointer" />
+              <Line 
+                yAxisId="right" 
+                type="monotone" 
+                dataKey="rating" 
+                name="Movie Rating" 
+                stroke="#d4af37" 
+                strokeWidth={4}
+                dot={{r: 6, fill: '#0b132b', stroke: '#d4af37', strokeWidth: 2}}
+                activeDot={{r: 10, fill: '#d4af37', shadow: '0 0 15px #d4af37', stroke: '#fff'}}
+                animationDuration={2500}
+              />
+            </ComposedChart>
+          </ResponsiveContainer>
+        </motion.div>
+      </div>
     </div>
   );
 };

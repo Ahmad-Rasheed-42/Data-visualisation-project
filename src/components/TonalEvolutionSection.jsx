@@ -30,7 +30,7 @@ const CustomTooltip = ({ active, payload }) => {
 
 const TonalEvolutionSection = () => {
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center relative z-10 px-12 py-20 overflow-hidden">
+    <div className="w-full h-full flex flex-col items-center justify-center relative z-10 px-12 py-10 overflow-hidden">
       
       {/* 3D Generated Artifact: Potion Bottle */}
       <motion.img 
@@ -81,59 +81,79 @@ const TonalEvolutionSection = () => {
         <Ghost size={40} />
       </motion.div>
 
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="w-full max-w-5xl mb-8 relative z-20"
-      >
-        <h2 className="text-4xl md:text-5xl font-serif text-magical-gold mb-4 text-glow">The Tonal Evolution</h2>
-        <p className="text-2xl font-sans text-gray-400">
-          Did a darker <span className="text-white hover:text-glow-hover cursor-default transition-all shadow-[0_0_15px_rgba(26,71,42,0.8)] rounded-md px-1 bg-magical-slytherin/20">tone</span> equal better ratings?
-        </p>
-      </motion.div>
+      <div className="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-3 gap-8 relative z-20">
+        
+        {/* Text Content Area */}
+        <motion.div
+          initial={{ opacity: 0, x: -30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+          className="col-span-1 flex flex-col justify-center"
+        >
+          <h2 className="text-4xl md:text-5xl font-serif text-magical-gold mb-4 text-glow">The Tonal Evolution</h2>
+          <p className="text-xl font-sans text-gray-400 mb-6">
+            Did a darker <span className="text-white hover:text-glow-hover cursor-default transition-all shadow-[0_0_15px_rgba(26,71,42,0.8)] rounded-md px-1 bg-magical-slytherin/20">tone</span> equal better ratings?
+          </p>
+          
+          <div className="bg-magical-midnight/80 border border-magical-slytherin/30 rounded-xl p-5 shadow-[0_0_20px_rgba(26,71,42,0.15)] backdrop-blur-md">
+            <h3 className="text-magical-slytherin font-serif text-xl mb-2 flex items-center gap-2">
+              <Skull size={18} /> The Analysis
+            </h3>
+            <p className="text-sm text-gray-300 font-sans leading-relaxed mb-4">
+              This scatter plot maps the visual darkness (color grading and thematic tone) against the IMDb rating of each film.
+            </p>
+            <h3 className="text-magical-gold font-serif text-xl mb-2 flex items-center gap-2">
+              <Sparkles size={18} /> The Conclusion
+            </h3>
+            <p className="text-sm text-gray-300 font-sans leading-relaxed">
+              As the series progressed, the tone grew significantly darker, mirroring the maturity of the audience. The highest-rated films (like <span className="text-white italic">Deathly Hallows Part 2</span> and <span className="text-white italic">Prisoner of Azkaban</span>) correspond with steep tonal shifts, suggesting audiences deeply resonated with the darker, more mature narrative evolution.
+            </p>
+          </div>
+        </motion.div>
 
-      <motion.div 
-        initial={{ opacity: 0, scale: 0.95 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1, delay: 0.2 }}
-        className="w-full max-w-5xl h-[60vh] bg-magical-midnight/70 rounded-xl p-6 border border-magical-slytherin/50 backdrop-blur-md relative z-20 shadow-[0_0_30px_rgba(26,71,42,0.2)]"
-      >
-        <ResponsiveContainer width="100%" height="100%">
-          <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
-            <CartesianGrid strokeDasharray="3 3" stroke="#1a472a" opacity={0.5} />
-            <XAxis 
-              type="number" 
-              dataKey="darkness" 
-              name="Visual Darkness" 
-              domain={[2, 10]} 
-              stroke="#d4af37" 
-              tick={{fill: '#f0e6d2', fontFamily: 'Inter'}}
-              label={{ value: 'Visual Darkness Score', position: 'insideBottom', offset: -10, fill: '#d4af37', fontFamily: 'Playfair Display' }}
-            />
-            <YAxis 
-              type="number" 
-              dataKey="rating" 
-              name="IMDb Rating" 
-              domain={[7, 8.5]} 
-              stroke="#d4af37"
-              tick={{fill: '#f0e6d2', fontFamily: 'Inter'}}
-              label={{ value: 'IMDb Rating', angle: -90, position: 'insideLeft', fill: '#d4af37', fontFamily: 'Playfair Display' }}
-            />
-            <ZAxis type="number" range={[150, 500]} />
-            <Tooltip content={<CustomTooltip />} cursor={{strokeDasharray: '3 3', stroke: '#1a472a'}} />
-            <Scatter 
-              name="Movies" 
-              data={data} 
-              fill="#1a472a" 
-              stroke="#d4af37"
-              strokeWidth={2}
-              shape="circle" 
-              className="hover:filter hover:brightness-150 hover:drop-shadow-[0_0_15px_#1a472a] transition-all duration-300 cursor-pointer"
-            />
-          </ScatterChart>
-        </ResponsiveContainer>
-      </motion.div>
+        {/* Chart Area */}
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1, delay: 0.2 }}
+          className="col-span-2 w-full h-[65vh] bg-magical-midnight/70 rounded-xl p-6 border border-magical-slytherin/50 backdrop-blur-md shadow-[0_0_30px_rgba(26,71,42,0.2)]"
+        >
+          <ResponsiveContainer width="100%" height="100%">
+            <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
+              <CartesianGrid strokeDasharray="3 3" stroke="#1a472a" opacity={0.5} />
+              <XAxis 
+                type="number" 
+                dataKey="darkness" 
+                name="Visual Darkness" 
+                domain={[2, 10]} 
+                stroke="#d4af37" 
+                tick={{fill: '#f0e6d2', fontFamily: 'Inter'}}
+                label={{ value: 'Visual Darkness Score', position: 'insideBottom', offset: -10, fill: '#d4af37', fontFamily: 'Playfair Display' }}
+              />
+              <YAxis 
+                type="number" 
+                dataKey="rating" 
+                name="IMDb Rating" 
+                domain={[7, 8.5]} 
+                stroke="#d4af37"
+                tick={{fill: '#f0e6d2', fontFamily: 'Inter'}}
+                label={{ value: 'IMDb Rating', angle: -90, position: 'insideLeft', fill: '#d4af37', fontFamily: 'Playfair Display' }}
+              />
+              <ZAxis type="number" range={[150, 500]} />
+              <Tooltip content={<CustomTooltip />} cursor={{strokeDasharray: '3 3', stroke: '#1a472a'}} />
+              <Scatter 
+                name="Movies" 
+                data={data} 
+                fill="#1a472a" 
+                stroke="#d4af37"
+                strokeWidth={2}
+                shape="circle" 
+                className="hover:filter hover:brightness-150 hover:drop-shadow-[0_0_15px_#1a472a] transition-all duration-300 cursor-pointer"
+              />
+            </ScatterChart>
+          </ResponsiveContainer>
+        </motion.div>
+      </div>
     </div>
   );
 };
